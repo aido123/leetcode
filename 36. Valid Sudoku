@@ -1,0 +1,61 @@
+//https://leetcode.com/problems/valid-sudoku/
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        
+        for(int i = 0; i < board.length; i++){
+            if(!validate(board[i])){
+                return false;
+            }
+            if(!validate(getBoardCols(board,i))){
+                return false;
+            }
+        }
+        
+        for(int i = 0; i < board.length; i+=3){
+            for(int j = 0; j < board.length; j+=3){
+                if(!validate(getBoardBoxes(board,i,j))){
+                    return false;
+                }
+            }
+        }
+        
+            
+        return true;
+    }
+    
+    char[] getBoardBoxes(char[][] board, int i, int j){
+        char[] retArr = new char[9];
+        int z = 0;
+        for(int x=i; x < i+3; x++){
+            for(int y=j; y < j+3; y++){
+                retArr[z++] = board[x][y];
+            }
+        }
+        return retArr;
+    }
+    
+    char[] getBoardCols(char[][] board, int i){
+        char[] retArr = new char[9];
+        for(int j = 0; j < board.length; j++){
+            retArr[j] = board[j][i];
+        }
+        return retArr;
+    }
+    
+    boolean validate(char[] arr){
+        for(int i = 0; i< arr.length; i++){
+            for(int j = 0; j < arr.length; j++){
+                if(i!=j){
+                    if(arr[i] == arr[j] && arr[i] != '.'){
+                        return false;
+                    }
+                    if(!Character.isDigit(arr[i]) && arr[i] != '.'){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
