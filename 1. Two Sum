@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/two-sum/
+//https://youtu.be/84iTktHC_Qw
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         
