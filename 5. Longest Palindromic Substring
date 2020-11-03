@@ -1,0 +1,37 @@
+//https://leetcode.com/problems/longest-palindromic-substring/
+// Insert Video
+class Solution {
+    public String longestPalindrome(String s) {
+        
+        int windowLength = 1;
+        String longestPal = "";
+        
+        for(int start=0; start < s.length(); start++){
+            for(int end=start+windowLength; end <= s.length(); end++){
+                String seq = s.substring(start,end);
+                if(validatePal(seq)){
+                    
+                    longestPal = seq;
+                    windowLength = end-start > windowLength? end-start : windowLength;
+
+                }
+            }
+        }
+        return longestPal;       
+    }
+    
+    boolean validatePal(String s){
+        int i = 0;
+        int j = s.length()-1;
+        while (i<s.length() && j > 0){
+            if(s.charAt(i) != s.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        
+        return true;
+        
+    }
+}
