@@ -1,0 +1,50 @@
+//<Insert Video>
+//https://leetcode.com/problems/zigzag-conversion/
+class Solution {
+    public String convert(String s, int numRows) {
+        
+        double blockWidth = numRows-1;
+        double charsInBlock = numRows + numRows - 2;
+        double blocks = s.length() / charsInBlock;
+        int columns = new Double(blocks * blockWidth).intValue();
+        
+        char [][] arr = new char[numRows][columns];
+        
+        int x = 0;
+        int i = 0;
+        int j = 0;
+        boolean iforward = true;
+        while(x < s.length()){
+            
+            arr[i][j] = s.charAt(x);
+            x++;
+            
+            if(i+1 == numRows){
+                iforward = false;
+            }else if(i-1 == -1){
+                iforward = true;
+            }
+            
+            if(iforward){
+                i++;
+            }else{
+                i--;
+                j++;
+            }
+            
+            
+        }
+        String retVal = "";
+        for(int a = 0; a < arr.length; a++){
+            for(int b = 0; b < arr[a].length; b++){
+                if(arr[a][b] != '\u0000'){
+                    retVal+=arr[a][b];
+                }
+            }
+        }
+        
+        return retVal;
+        
+        
+    }
+}
