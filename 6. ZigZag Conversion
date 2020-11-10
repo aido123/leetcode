@@ -3,6 +3,9 @@
 class Solution {
     public String convert(String s, int numRows) {
         
+        if(numRows==1){
+            return s;
+        }
         double blockWidth = numRows-1;
         double charsInBlock = numRows + numRows - 2;
         double blocks = s.length() / charsInBlock;
